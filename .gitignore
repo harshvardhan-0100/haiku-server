@@ -1,0 +1,4 @@
+*.o
+*.out
+haiku_server
+haiku_client
