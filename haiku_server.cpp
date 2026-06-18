@@ -23,9 +23,24 @@ int main() {
 
     std::cout << "Bound to port 5575\n"; 
 
-    if (listen(server_fd, 5) == - 1) {
+    if (listen(server_fd, 5) == -1) {
         std::cerr << "listen() failed\n";
         return 1; 
     }
+    std::cout << "Listening... waiting for a client\n"; 
+
+    sockaddr_in client_address; 
+    socklen_t client_len = sizeof(client_address); 
+
+    int client_fd = accept(server_fd, (sockaddr*)&client_address, &client_len); 
+    if (client_fd ==  -1) {
+        std::cerr << "accept() failed\n"; 
+        return 1; 
+    }
+
+    std::cout << "A client connected! client_fd = " << client_fd << "\n";
+    
+    close(client_fd); 
+    close(server_fd);
     return 0; 
 }
