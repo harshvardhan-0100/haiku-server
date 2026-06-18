@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
@@ -40,6 +41,16 @@ int main() {
 
     std::cout << "A client connected! client_fd = " << client_fd << "\n";
     
+    const char* haiku[] = {
+        "Silent socket waits\n", 
+        "A client knocks, port wakes\n", 
+        "Words flow, then goodbye\n" 
+    };
+
+    for(int i = 0; i < 3; i++) {
+        write(client_fd, haiku[i], strlen(haiku[i])); 
+    }
+
     close(client_fd); 
     close(server_fd);
     return 0; 
