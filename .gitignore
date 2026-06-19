@@ -1,4 +1,4 @@
 *.o
 *.out
 haiku_server
-haiku_client
+haiku_client*.class
